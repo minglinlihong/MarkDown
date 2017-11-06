@@ -1,0 +1,33 @@
+```
+ubuntu server 端：
+	apt install git
+	apt install openssh-server
+
+在服务器上部署git仓库：
+	mkdir repos
+	sudo addgroup git-rw
+	sudo chgrp -R git-rw repos
+	ls -l
+	sudo useradd -M -g git-rw gitteacher
+	sudo passwd gitteacher
+	sudo useradd -M -g git-rw gitstudent
+	sudo passwd gitstudent
+客户端：
+	mkdir git_teacher
+	cd git_teacher/
+	git init
+	touch README.md
+	vim README.md
+	git add -A 
+	git commit -m"initial commit"
+	cd .. && git clone --bare git_teacher git_teacher.git 	#退回上一级目录，克隆一个仓库出来
+	scp -r git_teacher.git gitteacher@192.168.1.109:/home/ml/repos		#复制裸仓库到服务端
+客户端2：
+	git clone gitstudent@192.168.1.109:/home/ml/repos/git_teacher.git
+服务端：
+	sudo chmod -R g+w repos/git_teacher.git 
+	ls -l repos/git_teacher.git/
+
+git push origin master # 将本地主分支推到远程主分支
+git pull # 抓取远程仓库所有分支更新并合并到本地
+```
