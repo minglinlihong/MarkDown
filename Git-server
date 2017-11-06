@@ -31,3 +31,26 @@ ubuntu server 端：
 git push origin master # 将本地主分支推到远程主分支
 git pull # 抓取远程仓库所有分支更新并合并到本地
 ```
+```
+使用 SSH 公钥管理 Git 仓库授权:
+服务端：
+	sudo adduser git
+	su git
+	cd /home/git/
+	mkdir .ssh && chmod 700 .ssh
+	touch .ssh/authorized_keys && chmod 600 .ssh/authorized_keys
+客户端：
+	cd ~/.ssh/
+	ls
+	mv id_rsa id_rsa.bak	#备份私钥
+	mv id_rsa.pub id_rsa.pub.bak	#备份公钥
+	ssh-keygen	#重新生成私钥公钥
+	cat id_rsa.pub | ssh git@192.168.1.109 'cat - >> ~/.ssh/authorized_keys'	#导入公钥到服务器
+服务端：
+	禁止git用户登录shell，只允许git登录git-shell操作
+	which git-shell
+	sudo vim /etc/shells
+	sudo chsh git 
+	/usr/bin/git-shell
+	exit
+```
