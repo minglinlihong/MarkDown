@@ -96,11 +96,11 @@ else
 fi
 
 ##安装nginx
-[ -f /tmp/nginx-1.12.2.tar.gz ] && tar -xf /tmp/nginx-1.12.2.tar.gz
 yum install pcre pcre-devel openssl openssl-devel -y
+[ -f /tmp/nginx-1.12.2.tar.gz ] && tar -xf /tmp/nginx-1.12.2.tar.gz
 useradd -s /sbin/nologin nginx
 cd /tmp/nginx-1.12.2
-./configure --prefix=/usr/local/nginx --with-http_ssl_module --user=nginx  --group=nginx && make && make install &> /dev/null
+./configure --prefix=/usr/local/nginx --with-http_ssl_module --user=nginx  --group=nginx && make && make install
 
 ##nginx启动脚本
 cat >/etc/init.d/nginx<<-EOF
@@ -241,7 +241,7 @@ fi
 chkconfig nginx on
 
 ##安装php
-useradd -s /sbin/nologin
+useradd -s /sbin/nologin php-fpm
 yum install libxml2-devel curl-devel libjpeg-turbo-devel libpng-devel freetype-devel -y
 [ -f /tmp/php-7.2.21.tar.gz ] && tar -xf /tmp/php-7.2.21.tar.gz
 cd /tmp/php-7.2.21
