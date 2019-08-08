@@ -141,8 +141,7 @@ stop() {
 }  
 # reload nginx service functions.  
 reload() {  
-    echo -n $"Reloading $prog: "  
-    #kill -HUP `cat ${nginx_pid}`  
+    echo -n $"Reloading $prog: "   
     killproc $nginx -HUP  
     RETVAL=$?  
     echo  
