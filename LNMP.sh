@@ -244,7 +244,7 @@ chkconfig nginx on
 
 ##安装php
 useradd -s /sbin/nologin php-fpm
-yum install libxml2-devel curl-devel libjpeg-turbo-devel libpng-devel freetype-devel -y
+yum install libxml2-devel curl-devel libvpn-devel libjpeg-turbo-devel libpng-devel freetype-devel -y
 [ -f /tmp/php-7.2.21.tar.gz ] && tar -xf /tmp/php-7.2.21.tar.gz -C /tmp
 if [ -d /tmp/php-7.2.21 ] ;then
     cd /tmp/php-7.2.21
