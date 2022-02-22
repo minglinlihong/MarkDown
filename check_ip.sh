@@ -5,13 +5,12 @@
 
 > /tmp/up.txt
 > /tmp/down.txt
-ip=$(seq 1 254)
 
-for i in $ip;do
-        ping -c 1 -w 1 128.28.26.$i &> /dev/null
+for i in 128.28.26.{1..254};do
+        ping -c 1 -w 1 $i &> /dev/null
         if [ $? -eq 0 ];then
-                echo "128.28.26.$i is up!"|tee -a /tmp/up.txt
+                echo "$i is up!"|tee -a /tmp/up.txt
         else
-                echo "128.28.26.$i is down!"|tee -a /tmp/down.txt
+                echo "$i is down!"|tee -a /tmp/down.txt
         fi
 done
